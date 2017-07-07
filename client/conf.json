@@ -1,6 +1,6 @@
 {
     "local_port":1080,
     "server_password": [
-        ["server_addr:port", "ss_pwd", "aes-128-cfb-auth"]
+        ["$SS_SERVER_HOST:$SS_SERVER_PORT", "$SS_SERVER_PWD", "$SS_SERVER_AUTH"]
     ]
 }

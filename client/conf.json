@@ -1,6 +1,0 @@
-{
-    "local_port":1080,
-    "server_password": [
-        ["$SS_SERVER_HOST:$SS_SERVER_PORT", "$SS_SERVER_PWD", "$SS_SERVER_AUTH"]
-    ]
-}

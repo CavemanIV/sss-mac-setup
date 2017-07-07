@@ -1,8 +1,7 @@
 Client:
-1. fill in config.json
-2. setup console proxy in install.sh
-3. sudo sh install.sh, it will install brew
-4. manually install chrome extension
+1. fill in install.conf
+2. sudo sh install.sh, it will install brew
+3. manually install chrome extension, import config bak file
 
 Server:
 1. install docker

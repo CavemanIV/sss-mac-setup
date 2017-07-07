@@ -10,8 +10,8 @@ fi
 brew install golang
 
 # install shadowsocks
-export http_proxy=http://$PROXY_HOST:$PROXY_HOST
-export https_proxy=https://$PROXY_HOST:$PROXY_PORT
+export http_proxy=http://$INSTALL_PROXY_HOST:$INSTALL_PROXY_PORT
+export https_proxy=https://$INSTALL_PROXY_HOST:$INSTALL_PROXY_PORT
 go get github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-local
 
 # setup config

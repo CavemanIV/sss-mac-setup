@@ -1,5 +1,7 @@
 #!/bin/bash
 
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
 brew install golang
 go get github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-local
 

@@ -1,7 +1,6 @@
 Client:
-1. fill in install.conf
-2. sudo sh install.sh, it will install brew
-3. manually install chrome extension, import config bak file
+1. sudo sh install.sh
+2. manually install chrome extension, setup shell hp, polipo etc
 
 Server:
 1. install docker

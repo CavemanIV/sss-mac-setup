@@ -1,31 +1,34 @@
 #!/bin/bash
 
-source ./install.conf
-SS_LOCAL_ETC=/usr/local/etc/go-ss-local
-
-if ! type "brew" > /dev/null; then
-  /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+if [ $# -ne 1 ]
+then
+    echo "usage: sh install.sh ss://AES-128-CFB:{password}@{server}:{server_port}"
+    exit
 fi
 
-brew install golang
 
-# install shadowsocks
-export http_proxy=http://$INSTALL_PROXY_HOST:$INSTALL_PROXY_PORT
-export https_proxy=https://$INSTALL_PROXY_HOST:$INSTALL_PROXY_PORT
-go get github.com/shadowsocks/shadowsocks-go/cmd/shadowsocks-local
+TPL_PATH="./go-shadowsocks2.plist.tpl"
+PLIST_PATH="$HOME/Library/LaunchAgents/go-shadowsocks2.plist"
+SS_BIN_PATH="/usr/local/bin/go-shadowsocks2"
 
-# setup config
-ln -s $HOME/go/bin/shadowsocks-local /usr/local/bin/shadowsocks-local
-mkdir -p $SS_LOCAL_ETC
-printf '{
-    "local_port":1080,
-    "server_password": [
-        ["%s:%s", "%s", "%s"]
-    ]
-}' "$SS_SERVER_HOST" "$SS_SERVER_PORT" "$SS_SERVER_PWD" $SS_SERVER_AUTH > $SS_LOCAL_ETC/conf.json
+export ss_conn_str=$1
+mkdir -p /usr/local/bin/
+mkdir -p /usr/local/etc/
 
-# setup initd
-cp sslocal.plist $HOME/Library/LaunchAgents/sslocal.plist
-launchctl load $HOME/Library/LaunchAgents/sslocal.plist
+if [ ! -f $SS_BIN_PATH ]; then
+    echo "copy binary file..."
+    cp go-shadowsocks2 $SS_BIN_PATH
+fi
 
-# brew install polipo ans setup hp for shell
+if [ ! -f $PLIST_PATH ]; then
+    echo "creating plist..."
+    echo "render ss conn str $ss_conn_str into..."
+    eval "echo \"$(cat $TPL_PATH)\"" > $PLIST_PATH
+fi
+
+
+echo "start from launchctl..."
+launchctl load $PLIST_PATH
+
+echo "process resut:"
+launchctl list | grep go-shadowsocks2

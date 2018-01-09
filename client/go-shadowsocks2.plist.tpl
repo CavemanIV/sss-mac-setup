@@ -8,9 +8,11 @@
         <key>ProgramArguments</key>
         <array>
             <string>/usr/local/bin/go-shadowsocks2</string>
-            <string>-c ${ss_conn_str}</string>
+            <string>-c</string>
+            <string>${ss_conn_str}</string>
             <string>-verbose</string>
-            <string>-socks :1080</string>
+            <string>-socks</string>
+            <string>:1080</string>
         </array>
 
         <key>RunAtLoad</key>

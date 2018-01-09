@@ -3,7 +3,6 @@ Client:
 2. manually install chrome extension, setup shell hp, polipo etc
 
 Server:
-1. install docker
-2. change password etc in dockerfile
-3. docker build --rm -f ssgo_server.dockerfile -t ssgo .
-4. docker run --rm -d --rm -p port:port ssgo
+1. docker build . -t go-shadowsocks2 --rm
+2. copy and fill env_file.list
+3. docker run --rm -d -p <EXPOSE_PORT>:1080 --env-file ./env_file.list go-shadowsocks2

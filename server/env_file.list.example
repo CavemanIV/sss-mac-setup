@@ -1,3 +1,2 @@
 METHOD=AES-128-CFB
-HOST_ON_PORT=1080
-CONN_PWD=!yourpassword!
+CONN_PWD=<yourpassword here>
